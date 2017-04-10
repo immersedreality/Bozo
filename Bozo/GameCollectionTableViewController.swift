@@ -13,18 +13,13 @@ class GameCollectionTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 20
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell", for: indexPath) as! GameTableViewCell
-        cell.gameTitleLabel.text = "GAY GAME"
+        cell.gameTitleLabel.text = "GAME TITLE"
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! GameTableViewCell
-        cell.backgroundColor = UIColor.black
     }
     
     override var prefersStatusBarHidden: Bool {
