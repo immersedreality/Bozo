@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Bozo
-//
-//  Created by Jeffrey Eugene Hoch on 4/9/17.
-//  Copyright © 2017 Jeffrey Eugene Hoch. All rights reserved.
-//
 
 import UIKit
 

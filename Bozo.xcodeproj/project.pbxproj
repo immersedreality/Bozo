@@ -7,21 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F814F2C1E9B042700A672AC /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F814F2B1E9B042700A672AC /* GameTableViewCell.swift */; };
 		1FC498791E9AC34B0076A1C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC498781E9AC34B0076A1C4 /* AppDelegate.swift */; };
-		1FC4987B1E9AC34B0076A1C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC4987A1E9AC34B0076A1C4 /* ViewController.swift */; };
+		1FC4987B1E9AC34B0076A1C4 /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC4987A1E9AC34B0076A1C4 /* IntroductionViewController.swift */; };
 		1FC4987E1E9AC34B0076A1C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC4987C1E9AC34B0076A1C4 /* Main.storyboard */; };
 		1FC498801E9AC34B0076A1C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC4987F1E9AC34B0076A1C4 /* Assets.xcassets */; };
 		1FC498831E9AC34B0076A1C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC498811E9AC34B0076A1C4 /* LaunchScreen.storyboard */; };
+		1FC4988F1E9AC6DE0076A1C4 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC4988E1E9AC6DE0076A1C4 /* MainScreenViewController.swift */; };
+		1FC498911E9AC7390076A1C4 /* GameCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC498901E9AC7380076A1C4 /* GameCollectionTableViewController.swift */; };
+		1FC498931E9AC7880076A1C4 /* GetGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC498921E9AC7880076A1C4 /* GetGameViewController.swift */; };
+		1FC498951E9AC7CB0076A1C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC498941E9AC7CB0076A1C4 /* SettingsViewController.swift */; };
+		1FC498971E9AC89E0076A1C4 /* HeresYoGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC498961E9AC89E0076A1C4 /* HeresYoGameViewController.swift */; };
+		1FC4989B1E9ADC830076A1C4 /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC4989A1E9ADC830076A1C4 /* GameDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F814F2B1E9B042700A672AC /* GameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
 		1FC498751E9AC34B0076A1C4 /* Bozo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bozo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FC498781E9AC34B0076A1C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1FC4987A1E9AC34B0076A1C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1FC4987A1E9AC34B0076A1C4 /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		1FC4987D1E9AC34B0076A1C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FC4987F1E9AC34B0076A1C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FC498821E9AC34B0076A1C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FC498841E9AC34B0076A1C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FC4988E1E9AC6DE0076A1C4 /* MainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		1FC498901E9AC7380076A1C4 /* GameCollectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCollectionTableViewController.swift; sourceTree = "<group>"; };
+		1FC498921E9AC7880076A1C4 /* GetGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGameViewController.swift; sourceTree = "<group>"; };
+		1FC498941E9AC7CB0076A1C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1FC498961E9AC89E0076A1C4 /* HeresYoGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeresYoGameViewController.swift; sourceTree = "<group>"; };
+		1FC4989A1E9ADC830076A1C4 /* GameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +69,36 @@
 			isa = PBXGroup;
 			children = (
 				1FC498781E9AC34B0076A1C4 /* AppDelegate.swift */,
-				1FC4987A1E9AC34B0076A1C4 /* ViewController.swift */,
-				1FC4987C1E9AC34B0076A1C4 /* Main.storyboard */,
+				1FC4988C1E9AC6830076A1C4 /* View */,
+				1FC4988D1E9AC6910076A1C4 /* Controller */,
 				1FC4987F1E9AC34B0076A1C4 /* Assets.xcassets */,
-				1FC498811E9AC34B0076A1C4 /* LaunchScreen.storyboard */,
 				1FC498841E9AC34B0076A1C4 /* Info.plist */,
 			);
 			path = Bozo;
+			sourceTree = "<group>";
+		};
+		1FC4988C1E9AC6830076A1C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FC498811E9AC34B0076A1C4 /* LaunchScreen.storyboard */,
+				1FC4987C1E9AC34B0076A1C4 /* Main.storyboard */,
+				1F814F2B1E9B042700A672AC /* GameTableViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1FC4988D1E9AC6910076A1C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FC4987A1E9AC34B0076A1C4 /* IntroductionViewController.swift */,
+				1FC4988E1E9AC6DE0076A1C4 /* MainScreenViewController.swift */,
+				1FC498901E9AC7380076A1C4 /* GameCollectionTableViewController.swift */,
+				1FC498921E9AC7880076A1C4 /* GetGameViewController.swift */,
+				1FC498961E9AC89E0076A1C4 /* HeresYoGameViewController.swift */,
+				1FC498941E9AC7CB0076A1C4 /* SettingsViewController.swift */,
+				1FC4989A1E9ADC830076A1C4 /* GameDetailViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +174,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FC4987B1E9AC34B0076A1C4 /* ViewController.swift in Sources */,
+				1FC4987B1E9AC34B0076A1C4 /* IntroductionViewController.swift in Sources */,
+				1FC498971E9AC89E0076A1C4 /* HeresYoGameViewController.swift in Sources */,
+				1F814F2C1E9B042700A672AC /* GameTableViewCell.swift in Sources */,
+				1FC498931E9AC7880076A1C4 /* GetGameViewController.swift in Sources */,
 				1FC498791E9AC34B0076A1C4 /* AppDelegate.swift in Sources */,
+				1FC4988F1E9AC6DE0076A1C4 /* MainScreenViewController.swift in Sources */,
+				1FC4989B1E9ADC830076A1C4 /* GameDetailViewController.swift in Sources */,
+				1FC498911E9AC7390076A1C4 /* GameCollectionTableViewController.swift in Sources */,
+				1FC498951E9AC7CB0076A1C4 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +249,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -249,7 +293,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -267,6 +311,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jeffreyeugenehoch.Bozo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -280,6 +325,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jeffreyeugenehoch.Bozo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -302,6 +348,7 @@
 				1FC498891E9AC34B0076A1C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
