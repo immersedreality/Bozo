@@ -144,7 +144,7 @@
                                     <color key="titleShadowColor" red="0.53949008639999996" green="0.26371285259999999" blue="0.56432423860000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="znm-VG-GTU" kind="show" identifier="toHeresYoGameVC" id="7fW-5P-6QD"/>
+                                    <action selector="getGameTapped:" destination="4gm-qe-bmo" eventType="touchUpInside" id="Tgy-nR-Qr6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Za-MH-sQe">
@@ -210,6 +210,9 @@
                                     <segment title="8+"/>
                                 </segments>
                                 <color key="tintColor" red="0.22075839629999999" green="0.70288705579999999" blue="0.29288925929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="playerCountSelected:" destination="4gm-qe-bmo" eventType="valueChanged" id="ABV-5g-RHd"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="b36-0o-lPs">
                                 <rect key="frame" x="24" y="178.5" width="327" height="34.5"/>
@@ -223,6 +226,9 @@
                                     <segment title="180+"/>
                                 </segments>
                                 <color key="tintColor" red="0.22075839629999999" green="0.70288705579999999" blue="0.29288925929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="gameLengthSelected:" destination="4gm-qe-bmo" eventType="valueChanged" id="hEb-hL-bDa"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Jem-4Q-Uqf">
                                 <rect key="frame" x="24" y="312.5" width="327" height="34.5"/>
@@ -235,6 +241,9 @@
                                     <segment title="10"/>
                                 </segments>
                                 <color key="tintColor" red="0.22075839629999999" green="0.70288705579999999" blue="0.29288925929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="minRatingSelected:" destination="4gm-qe-bmo" eventType="valueChanged" id="1W5-nQ-SaA"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="aWF-lU-xsw">
                                 <rect key="frame" x="24" y="379.5" width="327" height="34.5"/>
@@ -247,6 +256,9 @@
                                     <segment title="Any"/>
                                 </segments>
                                 <color key="tintColor" red="0.22075839629999999" green="0.70288705579999999" blue="0.29288925929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="maxPlaysSelected:" destination="4gm-qe-bmo" eventType="valueChanged" id="26U-Wz-DAa"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="fXD-bM-al1">
                                 <rect key="frame" x="24" y="446.5" width="327" height="34.5"/>
@@ -256,6 +268,9 @@
                                     <segment title="Nah"/>
                                 </segments>
                                 <color key="tintColor" red="0.22075839629999999" green="0.70288705579999999" blue="0.29288925929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="bestRankedSelected:" destination="4gm-qe-bmo" eventType="valueChanged" id="pLb-M6-BKB"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMPLEXITY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EK7-m5-aWX">
                                 <rect key="frame" x="24" y="212" width="327" height="33.5"/>
@@ -277,6 +292,9 @@
                                     <segment title="Heavy"/>
                                 </segments>
                                 <color key="tintColor" red="0.22075839629999999" green="0.70288705579999999" blue="0.29288925929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="complexitySelected:" destination="4gm-qe-bmo" eventType="valueChanged" id="N7P-6q-dCE"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEST RANKED?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9o-RA-CXe">
                                 <rect key="frame" x="24" y="413" width="327" height="33.5"/>
@@ -352,6 +370,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="cqE-xb-E20"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <segue destination="znm-VG-GTU" kind="show" identifier="toHeresYoGameVC" id="fGt-Ef-yvg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6g-u2-Rsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -385,7 +406,7 @@
                                     <action selector="notThisButtonTapped:" destination="znm-VG-GTU" eventType="touchUpInside" id="CJ9-H4-DVf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nl-fT-c6j">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nl-fT-c6j">
                                 <rect key="frame" x="16" y="439" width="343" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="42"/>
@@ -659,9 +680,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMH-uP-58T">
-                                            <rect key="frame" x="8" y="0.0" width="208" height="47"/>
-                                            <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="40"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMH-uP-58T">
+                                            <rect key="frame" x="8" y="0.0" width="177.5" height="40"/>
+                                            <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="34"/>
                                             <color key="textColor" red="0.22075839629999999" green="0.70288705579999999" blue="0.29288925929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" red="0.53949008639999996" green="0.26371285259999999" blue="0.56432423860000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

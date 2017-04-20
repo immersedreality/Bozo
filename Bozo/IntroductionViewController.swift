@@ -4,6 +4,7 @@ import UIKit
 class IntroductionViewController: UIViewController {
 
     let defaults = UserDefaults.standard
+    let manager = APIManager.singleton
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +20,11 @@ class IntroductionViewController: UIViewController {
     
     func presentUsernameEntryAlert() {
         let usernameEntryAlert = UIAlertController(title: "Enter Your BGG Username", message: nil, preferredStyle: .alert)
-        let usernameEntryAction = UIAlertAction(title: "Snag my games!", style: .default) { (_) in
+        let usernameEntryAction = UIAlertAction(title: "Here you go!", style: .default) { (_) in
             let username = usernameEntryAlert.textFields?[0].text
             self.defaults.set(username, forKey: "username")
+            self.manager.username = username
+            self.manager.getGames()
             self.dismiss(animated: true, completion: nil)
         }
         

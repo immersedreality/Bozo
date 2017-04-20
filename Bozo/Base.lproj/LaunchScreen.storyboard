@@ -24,7 +24,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayArgyle" translatesAutoresizingMaskIntoConstraints="NO" id="9yo-ld-PLC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BOZO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPR-gR-z69">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BOZO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPR-gR-z69">
                                 <rect key="frame" x="33.5" y="273" width="309" height="121"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="104"/>
                                 <color key="textColor" red="0.22075839629999999" green="0.70288705579999999" blue="0.29288925929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
