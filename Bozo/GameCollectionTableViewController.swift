@@ -9,8 +9,17 @@ class GameCollectionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if manager.gameCollection.isEmpty {
-            manager.getGames()
+            manager.getGames(completion: {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                if self.manager.gameCollection.isEmpty {
+                    self.presentInternetErrorAlert()
+                }
+            })
         }
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -36,6 +45,16 @@ class GameCollectionTableViewController: UITableViewController {
             destination.game = cell.game
         }
     }
+    
+    func presentInternetErrorAlert() {
+        let internetErrorAlert = UIAlertController(title: "There was an issue getting your board game data.", message: "Please check that your username is accurate and try reloading from the settings menu.", preferredStyle: .alert)
+        let internetErrorAction = UIAlertAction(title: "Got it", style: .default) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        internetErrorAlert.addAction(internetErrorAction)
+        present(internetErrorAlert, animated: true, completion: nil)
+    }
+
     
     override var prefersStatusBarHidden: Bool {
         return true

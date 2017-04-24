@@ -14,6 +14,7 @@ class HeresYoGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gameImageView.alpha = 0
+        gameTitleLabel.alpha = 0
         showGame()
     }
     
@@ -35,12 +36,14 @@ class HeresYoGameViewController: UIViewController {
     
     func showGame() {
         gameImageView.alpha = 0
+        gameTitleLabel.alpha = 0
         
         manager.getImageAt(url: matchedGames[gameIndex].imageURL) { (image) in
             DispatchQueue.main.async {
                  self.gameImageView.image = image
                 UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
                     self.gameImageView.alpha = 1
+                    self.gameTitleLabel.alpha = 1
                 }, completion: nil)
             }
         }

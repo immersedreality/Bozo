@@ -3,6 +3,12 @@ import UIKit
 
 class GetGameViewController: UIViewController {
     
+    @IBOutlet weak var playerCountSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var gameLengthSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var minRatingSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var maxPlaysSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var bestRankedSegmentedControl: UISegmentedControl!
+    
     let manager = APIManager.singleton
     let queryManager = QueryManager()
     var matchedGames: [Game] = []
@@ -10,7 +16,11 @@ class GetGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if manager.gameCollection.isEmpty {
-            manager.getGames()
+            manager.getGames(completion: {
+                if self.manager.gameCollection.isEmpty {
+                    self.presentInternetErrorAlert()
+                }
+            })
         }
     }
     
@@ -64,25 +74,6 @@ class GetGameViewController: UIViewController {
         }
     }
     
-    @IBAction func complexitySelected(_ sender: UISegmentedControl) {
-        let index = sender.selectedSegmentIndex
-        
-        switch index {
-        case 0:
-            queryManager.complexity = .light
-        case 1:
-            queryManager.complexity = .mediumLight
-        case 2:
-            queryManager.complexity = .medium
-        case 3:
-            queryManager.complexity = .mediumHeavy
-        case 4:
-            queryManager.complexity = .heavy
-        default:
-            return
-        }
-    }
-
     @IBAction func minRatingSelected(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         
@@ -139,14 +130,22 @@ class GetGameViewController: UIViewController {
     }
     
     @IBAction func getGameTapped(_ sender: UIButton) {
-        matchedGames = queryManager.filterGames(games: matchedGames)
+        guard playerCountSegmentedControl.selectedSegmentIndex != UISegmentedControlNoSegment && gameLengthSegmentedControl.selectedSegmentIndex != UISegmentedControlNoSegment && minRatingSegmentedControl.selectedSegmentIndex != UISegmentedControlNoSegment && maxPlaysSegmentedControl.selectedSegmentIndex != UISegmentedControlNoSegment && bestRankedSegmentedControl.selectedSegmentIndex != UISegmentedControlNoSegment else {
+            presentNotAllSelectedAlert()
+            return
+        }
         
-        if matchedGames.count == 0 {
-            presentNoGamesAlert()
-        }
-        else {
-            performSegue(withIdentifier: "toHeresYoGameVC", sender: nil)
-        }
+        queryManager.filterGames(games: matchedGames, completion: { (filteredGames) in
+            self.matchedGames = filteredGames
+            
+            if self.matchedGames.count == 0 {
+                self.presentNoGamesAlert()
+            }
+            else {
+                self.performSegue(withIdentifier: "toHeresYoGameVC", sender: nil)
+            }
+        })
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -156,16 +155,31 @@ class GetGameViewController: UIViewController {
         }
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
     func presentNoGamesAlert() {
         let noGamesAlert = UIAlertController(title: "No games in your collection match the search criteria.", message: nil, preferredStyle: .alert)
-        let noGamesAction = UIAlertAction(title: "Let me try again.", style: .default) { (_) in
+        let noGamesAction = UIAlertAction(title: "Try again", style: .default) { (_) in
             self.matchedGames = self.manager.gameCollection
         }
         noGamesAlert.addAction(noGamesAction)
         present(noGamesAlert, animated: true, completion: nil)
+    }
+    
+    func presentNotAllSelectedAlert() {
+        let notAllSelectedAlert = UIAlertController(title: "Please make a selection for all options.", message: nil, preferredStyle: .alert)
+        let notAllSelectedAction = UIAlertAction(title: "Try again", style: .default)
+        notAllSelectedAlert.addAction(notAllSelectedAction)
+        present(notAllSelectedAlert, animated: true, completion: nil)
+    }
+    
+    func presentInternetErrorAlert() {
+        let internetErrorAlert = UIAlertController(title: "There was an issue getting your board game data.", message: "Please check that your username is accurate and try reloading data from the settings menu.", preferredStyle: .alert)
+        let internetErrorAction = UIAlertAction(title: "Got it", style: .default) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        internetErrorAlert.addAction(internetErrorAction)
+        present(internetErrorAlert, animated: true, completion: nil)    }
+
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 }

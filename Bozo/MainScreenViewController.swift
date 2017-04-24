@@ -12,7 +12,7 @@ class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         if let username = defaults.string(forKey: "username") {
             manager.username = username
-            manager.getGames()
+            manager.getGames(completion: {})
         }
     }
     

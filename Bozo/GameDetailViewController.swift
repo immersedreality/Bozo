@@ -14,7 +14,6 @@ class GameDetailViewController: UIViewController {
     @IBOutlet weak var userPlaysLabel: UILabel!
     @IBOutlet weak var playerCountLabel: UILabel!
     @IBOutlet weak var playTimeLabel: UILabel!
-    @IBOutlet weak var complexityLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +25,6 @@ class GameDetailViewController: UIViewController {
         userPlaysLabel.alpha = 0
         playerCountLabel.alpha = 0
         playTimeLabel.alpha = 0
-        complexityLabel.alpha = 0
-        
-        manager.getGameDetails(for: game) { 
-            DispatchQueue.main.async {
-                self.game.addSuggestedPlayerCounts(self.manager.suggestedPlayerCounts)
-                self.game.addComplexity(self.manager.complexity)
-                self.playerCountLabel.text = "Players: \(self.game.suggestedPlayerCounts![0].description)" + " - " + self.game.suggestedPlayerCounts!.last!.description
-                self.complexityLabel.text = self.game.complexity!.rawValue
-            }
-        }
         
         manager.getImageAt(url: game.imageURL) { (image) in
             DispatchQueue.main.async {
@@ -49,21 +38,27 @@ class GameDetailViewController: UIViewController {
                     self.userPlaysLabel.alpha = 1
                     self.playerCountLabel.alpha = 1
                     self.playTimeLabel.alpha = 1
-                    self.complexityLabel.alpha = 1
                 })
             }
         }
         
         gameTitleLabel.text = game.title
         yearLabel.text = game.yearPublished
-        userRatingLabel.text = "Your rating: \(game.userRating?.description ?? "Not Rated")"
+        userRatingLabel.text = "Your rating: \(game.userRating?.description ?? "N/A")"
         userPlaysLabel.text = "Your plays: \(game.plays.description)"
+        
+        if game.minPlayerCount == game.maxPlayerCount {
+            playerCountLabel.text = "Players: \(game.minPlayerCount.description)"
+        }
+        if game.minPlayerCount < game.maxPlayerCount {
+            playerCountLabel.text = "Players: \(game.minPlayerCount.description) - \(game.maxPlayerCount.description)"
+        }
         
         if game.minimumPlayTime == game.maximumPlayTime {
             playTimeLabel.text = "Play time: \(game.minimumPlayTime.description)"
         }
         if game.minimumPlayTime < game.maximumPlayTime {
-            playTimeLabel.text = "Play time: \(game.minimumPlayTime.description)" + " - " + game.maximumPlayTime.description
+            playTimeLabel.text = "Play time: \(game.minimumPlayTime.description) - \(game.maximumPlayTime.description)"
         }
     }
     

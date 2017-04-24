@@ -24,7 +24,7 @@ class IntroductionViewController: UIViewController {
             let username = usernameEntryAlert.textFields?[0].text
             self.defaults.set(username, forKey: "username")
             self.manager.username = username
-            self.manager.getGames()
+            self.manager.getGames(completion: { })
             self.dismiss(animated: true, completion: nil)
         }
         

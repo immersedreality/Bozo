@@ -8,31 +8,55 @@ final class QueryManager {
     
     var playerCount: Int? = nil
     var gameLength: Int? = nil
-    var complexity: Complexity? = nil
     var minRating: Int? = nil
     var maxPlays: Int? = nil
     var bestRanked: Bool = false
     
-    func filterGames(games: [Game]) -> [Game] {
+    func filterGames(games: [Game], completion: @escaping ([Game]) -> ()) {
         var filteredGames = games
         
-        if gameLength != nil {
-            if gameLength! < 180 {
-                let lengthRange = (gameLength! - 15)...(gameLength! + 15)
+        if let playerCount = playerCount {
+            if playerCount < 8 {
                 filteredGames = filteredGames.filter({ (game) -> Bool in
-                    return lengthRange.contains(game.minimumPlayTime) || lengthRange.contains(game.maximumPlayTime)
+                    return playerCount >= game.minPlayerCount && playerCount <= game.maxPlayerCount
                 })
             }
-            if gameLength! == 180 {
+            if playerCount == 8 {
                 filteredGames = filteredGames.filter({ (game) -> Bool in
-                    return game.minimumPlayTime >= 180 || game.maximumPlayTime >= 180
+                    return game.maxPlayerCount >= 8
                 })
             }
         }
         
-        if minRating != nil {
+        if let gameLength = gameLength {
+            if gameLength < 180 {
+                let lengthRange = (gameLength - 15)...(gameLength + 15)
+                filteredGames = filteredGames.filter({ (game) -> Bool in
+                    if game.minimumPlayTime == game.maximumPlayTime {
+                        return lengthRange.contains(game.maximumPlayTime)
+                    }
+                    else {
+                        var calculatedPlayTime = game.minimumPlayTime * playerCount!
+                        if calculatedPlayTime > game.maximumPlayTime {
+                            calculatedPlayTime = game.maximumPlayTime
+                        }
+                        return lengthRange.contains(calculatedPlayTime)
+                    }
+                })
+            }
+            if gameLength == 180 {
+                filteredGames = filteredGames.filter({ (game) -> Bool in
+                    return game.maximumPlayTime >= 180
+                })
+            }
+        }
+        
+        if let minRating = minRating {
             filteredGames = filteredGames.filter({ (game) -> Bool in
-                return game.userRating! >= minRating!
+                if let rating = game.userRating {
+                    return rating >= minRating
+                }
+                return false
             })
         }
         
@@ -42,37 +66,14 @@ final class QueryManager {
             })
         }
         
-        manager.getGameDetails(for: filteredGames) { 
-            if self.complexity != nil {
-                filteredGames = filteredGames.filter({ (game) -> Bool in
-                    return game.complexity == self.complexity!
-                })
-            }
-            
-            if self.playerCount != nil {
-                if self.playerCount! < 8 {
-                    filteredGames = filteredGames.filter({ (game) -> Bool in
-                        return game.suggestedPlayerCounts!.contains(self.playerCount!)
-                    })
-                }
-                if self.playerCount! == 8 {
-                    filteredGames = filteredGames.filter({ (game) -> Bool in
-                        return game.suggestedPlayerCounts!.last! >= 8
-                    })
-                }
-            }
-
-        }
-        
-        if bestRanked == true {
+        if self.bestRanked == true {
             filteredGames.sort { $0.geekRating > $1.geekRating}
+            completion(filteredGames)
         }
         
-        if bestRanked == false {
+        if self.bestRanked == false {
             filteredGames = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: filteredGames) as! [Game]
+            completion(filteredGames)
         }
-        
-        return filteredGames
     }
-    
 }
