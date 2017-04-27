@@ -44,7 +44,7 @@ final class APIManager: NSObject, XMLParserDelegate {
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: urlRequest) { (data, response, error) in
-            guard let responseStatus = response as? HTTPURLResponse else { return }
+            guard let responseStatus = response as? HTTPURLResponse else { completion(); return }
             print(responseStatus.statusCode)
             switch responseStatus.statusCode {
             case 200:
