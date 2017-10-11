@@ -63,7 +63,7 @@ final class APIManager: NSObject, XMLParserDelegate {
     }
     
     func getImageAt(url: String, completion: @escaping (UIImage) -> ()) {
-        guard let url = URL(string: "https:" + url) else { return }
+        guard let url = URL(string: url) else { return }
         let urlRequest = URLRequest(url: url)
         
         let session = URLSession.shared
