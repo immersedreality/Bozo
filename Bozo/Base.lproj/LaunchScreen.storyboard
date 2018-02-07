@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="ArialBold.ttf">
+            <string>Arial-BoldMT</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
-                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,16 +35,16 @@
                                 <size key="shadowOffset" width="8" height="4"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.2207583962507893" green="0.7028870558375635" blue="0.29288925929838566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="WPR-gR-z69" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1Lk-sg-ffR"/>
+                            <constraint firstItem="WPR-gR-z69" firstAttribute="centerX" secondItem="un1-KZ-7BG" secondAttribute="centerX" id="1Lk-sg-ffR"/>
                             <constraint firstItem="WPR-gR-z69" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4iA-8a-f41"/>
-                            <constraint firstAttribute="trailing" secondItem="9yo-ld-PLC" secondAttribute="trailing" id="KwU-XL-CIM"/>
-                            <constraint firstItem="9yo-ld-PLC" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="SZd-RT-eru"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="9yo-ld-PLC" secondAttribute="bottom" id="ieh-yq-WiW"/>
-                            <constraint firstItem="9yo-ld-PLC" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="kXW-Wl-tcQ"/>
+                            <constraint firstItem="un1-KZ-7BG" firstAttribute="trailing" secondItem="9yo-ld-PLC" secondAttribute="trailing" id="KwU-XL-CIM"/>
+                            <constraint firstAttribute="top" secondItem="9yo-ld-PLC" secondAttribute="top" id="Ljk-HA-81x"/>
+                            <constraint firstItem="un1-KZ-7BG" firstAttribute="bottom" secondItem="9yo-ld-PLC" secondAttribute="bottom" id="ieh-yq-WiW"/>
+                            <constraint firstItem="9yo-ld-PLC" firstAttribute="leading" secondItem="un1-KZ-7BG" secondAttribute="leading" id="kXW-Wl-tcQ"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="un1-KZ-7BG"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                 </viewController>

@@ -8,6 +8,7 @@ class GetGameViewController: UIViewController {
     @IBOutlet weak var minRatingSegmentedControl: UISegmentedControl!
     @IBOutlet weak var maxPlaysSegmentedControl: UISegmentedControl!
     @IBOutlet weak var bestRankedSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let manager = APIManager.singleton
     let queryManager = QueryManager()
@@ -15,17 +16,28 @@ class GetGameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if manager.gameCollection.isEmpty {
-            manager.getGames(completion: {
-                if self.manager.gameCollection.isEmpty {
-                    self.presentInternetErrorAlert()
-                }
-            })
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.activityIndicator.isHidden = true
         matchedGames = manager.gameCollection
+        
+        if manager.gameCollection.isEmpty {
+            self.activityIndicator.startAnimating()
+            self.activityIndicator.isHidden = false
+            
+            manager.getGames(completion: { (games) in
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    
+                    guard !games.isEmpty else {
+                        self.presentInternetErrorAlert()
+                        return
+                    }
+                }
+            })
+        }
     }
     
     @IBAction func playerCountSelected(_ sender: UISegmentedControl) {
@@ -172,14 +184,12 @@ class GetGameViewController: UIViewController {
     }
     
     func presentInternetErrorAlert() {
-        let internetErrorAlert = UIAlertController(title: "There was an issue getting your board game data.", message: "Please check that your username is accurate and try reloading data from the settings menu.", preferredStyle: .alert)
+        let internetErrorAlert = UIAlertController(title: "There was an issue getting your board game data.", message: "Board Game Geek may be busy.  Please check that your username is accurate and try again in a few moments.", preferredStyle: .alert)
         let internetErrorAction = UIAlertAction(title: "Got it", style: .default) { (_) in
             self.dismiss(animated: true, completion: nil)
         }
         internetErrorAlert.addAction(internetErrorAction)
-        present(internetErrorAlert, animated: true, completion: nil)    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
+        present(internetErrorAlert, animated: true, completion: nil)
+        
     }
 }

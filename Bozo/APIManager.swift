@@ -30,10 +30,12 @@ final class APIManager: NSObject, XMLParserDelegate {
     var plays: [Int] = []
 
     var currentlyGettingGames = false
+    var networkTimer = Timer()
+    var networkAttemptsRemaining = 6
     
     override private init(){}
     
-    func getGames(completion: @escaping () -> ()) {
+    func getGames(completion: @escaping ([Game]) -> ()) {
         gameCollection.removeAll()
         
         guard let username = username else { return }
@@ -44,7 +46,7 @@ final class APIManager: NSObject, XMLParserDelegate {
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: urlRequest) { (data, response, error) in
-            guard let responseStatus = response as? HTTPURLResponse else { completion(); return }
+            guard let responseStatus = response as? HTTPURLResponse else { completion([]); return }
             print(responseStatus.statusCode)
             switch responseStatus.statusCode {
             case 200:
@@ -54,12 +56,71 @@ final class APIManager: NSObject, XMLParserDelegate {
                 let xmlParser = XMLParser(data: responseData)
                 xmlParser.delegate = self
                 xmlParser.parse()
+                completion(self.gameCollection)
+            case 202:
+                DispatchQueue.main.async {
+                    self.keepTrying(completion: { (games) in
+                        if !games.isEmpty {
+                            self.networkAttemptsRemaining = 6
+                            completion(self.gameCollection)
+                        }
+                        else {
+                            self.networkAttemptsRemaining = 6
+                            completion([])
+                        }
+                    })
+                }
             default:
-                break
+                completion([])
             }
-            completion()
         }
         dataTask.resume()
+    }
+    
+    func keepTrying(completion: @escaping ([Game]) -> ()) {
+        if networkAttemptsRemaining > 0 {
+            networkTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false, block: { (timer) in
+                self.gameCollection.removeAll()
+                
+                guard let username = self.username else { return }
+                let urlString = URL(string: self.baseURL + "collection?username=\(username)&own=1&stats=1")
+                
+                guard let url = urlString else { return }
+                let urlRequest = URLRequest(url: url)
+                
+                let session = URLSession.shared
+                let dataTask = session.dataTask(with: urlRequest) { (data, response, error) in
+                    guard let responseStatus = response as? HTTPURLResponse else { self.networkAttemptsRemaining -= 1; return }
+                    print(responseStatus.statusCode)
+                    switch responseStatus.statusCode {
+                    case 200:
+                        guard let responseData = data else { return }
+                        print(responseData)
+                        self.currentlyGettingGames = true
+                        let xmlParser = XMLParser(data: responseData)
+                        xmlParser.delegate = self
+                        xmlParser.parse()
+                        completion(self.gameCollection)
+                    default:
+                        self.networkAttemptsRemaining -= 1
+                        DispatchQueue.main.async {
+                            self.keepTrying(completion: { (games) in
+                                if !games.isEmpty {
+                                    completion(self.gameCollection)
+                                }
+                                else {
+                                    completion([])
+                                }
+                            })
+                        }
+                    }
+                }
+                dataTask.resume()
+            })
+        }
+        else {
+            completion([])
+        }
     }
     
     func getImageAt(url: String, completion: @escaping (UIImage) -> ()) {
@@ -80,6 +141,14 @@ final class APIManager: NSObject, XMLParserDelegate {
         case "item":
             if let id = attributeDict["objectid"] {
                 ids.append(id)
+                
+                //default values
+                yearsPublished.append("(Unknown Year)")
+                minimumPlayTimes.append(60)
+                maximumPlayTimes.append(120)
+                minPlayerCounts.append(2)
+                maxPlayerCounts.append(4)
+                imageURLs.append("https://cf.geekdo-images.com/images/pic1657689.jpg")
             }
         case "rating":
             if let rating = attributeDict["value"] {
@@ -89,26 +158,35 @@ final class APIManager: NSObject, XMLParserDelegate {
                 if let rating = Int(rating) {
                     userRatings.append(rating)
                 }
-                
+                else if let rating = Double(rating) {
+                    let roundedRating = Int(rating.rounded())
+                    userRatings.append(roundedRating)
+                }
             }
         case "stats":
             if let minimumPlayTime = attributeDict["minplaytime"] {
                 if let minimumPlayTime = Int(minimumPlayTime) {
+                    minimumPlayTimes.removeLast()
                     minimumPlayTimes.append(minimumPlayTime)
                 }
             }
+            
             if let maximumPlayTime = attributeDict["maxplaytime"] {
                 if let maximumPlayTime = Int(maximumPlayTime) {
+                    maximumPlayTimes.removeLast()
                     maximumPlayTimes.append(maximumPlayTime)
                 }
             }
+            
             if let minPlayerCount = attributeDict["minplayers"] {
                 if let minPlayerCount = Int(minPlayerCount) {
+                    minPlayerCounts.removeLast()
                     minPlayerCounts.append(minPlayerCount)
                 }
             }
             if let maxPlayerCount = attributeDict["maxplayers"] {
                 if let maxPlayerCount = Int(maxPlayerCount) {
+                    maxPlayerCounts.removeLast()
                     maxPlayerCounts.append(maxPlayerCount)
                 }
             }
@@ -131,11 +209,13 @@ final class APIManager: NSObject, XMLParserDelegate {
         switch elementName {
         case "name":
             titles.append(currentElement)
-            
+
         case "yearpublished":
-            yearsPublished.append(currentElement)
+            yearsPublished.removeLast()
+            yearsPublished.append("(\(currentElement))")
             
         case "image":
+            imageURLs.removeLast()
             imageURLs.append(currentElement)
             
         case "numplays":

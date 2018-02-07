@@ -30,10 +30,6 @@ class HeresYoGameViewController: UIViewController {
         showGame()
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
     func showGame() {
         gameImageView.alpha = 0
         gameTitleLabel.alpha = 0
